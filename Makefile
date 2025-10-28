@@ -2,9 +2,9 @@ ifeq ($(OS),Windows_NT)
 $(error Windows is not supported)
 endif
 
-LANGUAGE_NAME := tree-sitter-html
-HOMEPAGE_URL := https://github.com/tree-sitter/tree-sitter-html
-VERSION := 0.23.2
+LANGUAGE_NAME := tree-sitter-twig
+HOMEPAGE_URL := https://github.com/urbantrout/tree-sitter-twig
+VERSION := 0.0.1
 
 # repository
 SRC_DIR := src

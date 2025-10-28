@@ -13,6 +13,7 @@ enum TokenType {
     IMPLICIT_END_TAG,
     RAW_TEXT,
     COMMENT,
+    TWIG_COMMENT,
 };
 
 typedef struct {
@@ -134,6 +135,33 @@ static bool scan_comment(TSLexer *lexer) {
                 }
             default:
                 dashes = 0;
+        }
+        advance(lexer);
+    }
+    return false;
+}
+
+static bool scan_twig_comment(TSLexer *lexer) {
+    if (lexer->lookahead != '#') {
+        return false;
+    }
+    advance(lexer);
+
+    bool hash = false;
+    while (lexer->lookahead) {
+        switch (lexer->lookahead) {
+            case '#':
+                hash = true;
+                break;
+            case '}':
+                if (hash) {
+                    lexer->result_symbol = TWIG_COMMENT;
+                    advance(lexer);
+                    lexer->mark_end(lexer);
+                    return true;
+                }
+            default:
+                hash = false;
         }
         advance(lexer);
     }
@@ -296,6 +324,14 @@ static bool scan(Scanner *scanner, TSLexer *lexer, const bool *valid_symbols) {
     }
 
     switch (lexer->lookahead) {
+        case '{':
+            lexer->mark_end(lexer);
+            advance(lexer);
+            if (lexer->lookahead == '#') {
+                advance(lexer);
+                return scan_twig_comment(lexer);
+            }
+            break;
         case '<':
             lexer->mark_end(lexer);
             advance(lexer);

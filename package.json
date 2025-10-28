@@ -1,14 +1,18 @@
 {
-  "name": "tree-sitter-html",
-  "version": "0.23.2",
-  "description": "HTML grammar for tree-sitter",
-  "repository": "https://github.com/tree-sitter/tree-sitter-html",
+  "name": "tree-sitter-twig",
+  "version": "0.0.1",
+  "description": "Twig grammar for tree-sitter",
+  "repository": "https://github.com/urbantrout/tree-sitter-twig",
   "license": "MIT",
   "author": {
-    "name": "Max Brunsfeld",
-    "email": "maxbrunsfeld@gmail.com"
+    "name": "Harald Atteneder",
+    "email": "harald@urbantrout.io"
   },
   "contributors": [
+    {
+      "name": "Max Brunsfeld",
+      "email": "maxbrunsfeld@gmail.com"
+    },
     {
       "name": "Ashi Krishnan",
       "email": "queerviolet@github.com"
@@ -20,8 +24,8 @@
   ],
   "maintainers": [
     {
-      "name": "Amaan Qureshi",
-      "email": "amaanq12@gmail.com"
+      "name": "Harald Atteneder",
+      "email": "harald@urbantrout.io"
     }
   ],
   "main": "bindings/node",
@@ -30,7 +34,7 @@
     "incremental",
     "parsing",
     "tree-sitter",
-    "html"
+    "twig"
   ],
   "files": [
     "grammar.js",
